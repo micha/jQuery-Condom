@@ -64,8 +64,8 @@ $.ns('myNamespace').patch('toggle', function(orig) {
 #### Object Way
 ```javascript
 $.ns('myNamespace').patch({
-  myFunc1: function() {},
-  myFunc2: function() {}
+  show: function(orig) {},
+  hide: function(orig) {}
 });
 ```
 
