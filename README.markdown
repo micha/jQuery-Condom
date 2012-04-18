@@ -49,17 +49,23 @@ $.ns('myNamespace').add({
 ```
 
 ### jQuery.ns().patch
-Monkey-patches the given method(s), prepending the original, unpatched jQuery method to the arguments passed to the method when called.
+Monkey-patches the given jQuery method(s), prepending the original, unpatched jQuery method to the arguments passed to the method when called.
 
-#### Example
+#### Chained Way
+```javascript
+$.ns('myNamespace').patch('toggle', function(orig) {
+  console.log("this is the patched toggle method");
+  // Call the unpatched method now, with the arguments the patched method
+  // was called with.
+  return orig.apply(this, $.makeArray(arguments).slice(1));
+});
+```
+
+#### Object Way
 ```javascript
 $.ns('myNamespace').patch({
-  toggle: function(orig) {
-    console.log("this is the patched toggle method");
-    // Call the unpatched method now, with the arguments the patched method
-    // was called with.
-    return orig.apply(this, $.makeArray(arguments).slice(1));
-  }
+  myFunc1: function() {},
+  myFunc2: function() {}
 });
 ```
 
